@@ -1,79 +1,72 @@
 @charset "ISO-8859-1";
-body
-{ 
-   margin: 0;
-   padding: 0;
-   font-family: sans-serif;
-   background-image: url("backgroundimg.jpg");
-   background-repeat: no-repeat;
-   background-size: cover;
-   background-position: centre;
-} 
-.sign-up-form
-{
-   width: 300px;
-   box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
-   background: orange;
-   padding: 20px;
-   margin: 8% auto 0;
-   text-align: centre; 
-} 
-.sign-up-form h1
-{
-   color: #1c8adb;
-   margin-bottom: 30px;
+body {
+  font-family: sans-serif;
+  background-image: url("backgroundimg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: centre;
 }
-.input-box
-{
-   border-radius: 20px;
-   padding: 10px; 
-   margin: 10px 0;
-   width: 100%;
-   border: 1px solid #999;
-   outline: none;
+.sign-up-form {
+  width: 300px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  background: skyblue;
+  padding: 10px;
+  margin: 2% auto 0;
+  text-align: centre;
 }
-button
-{
-   color: #fff;
-   width: 100%;
-   padding: 10px;
-   border-radius: 20px; 
-   font-size: 15px;
-   margin: 10px 0;
-   border: none;
-   outline: none;
-   cursor: pointer;
-   background-color: skyblue;
+.input-box {
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border: 1px solid #999;
+  outline: none;
 }
-.signup-btn
-{
-   background-color: blue;
+button {
+  color: white;
+  width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 25px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: white;
 }
-a
-{
-   text-decoration: none;
-} 
-hr
-{
-   margin-top: 20px;
-   width: 80%;
+button:hover {
+  background-color: black;
+  color: white;
+}
+a:hover {
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  font-size: 15px;
 }
 
-footer{
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: orange;
-   color: white;
-   text-align: center;
+hr {
+  margin-top: 20px;
+  width: 80%;
 }
-h1{
-   margin: auto;
-   width: 100%;
-   padding: 10px;
-   font-family:"Poppins",sans-serif;
-   color:Black;
-   border: 1px skyblue;
-   background-color: orange;
+
+marquee {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  opacity: 0.7;
+  color: white;
+  text-align: center;
 }

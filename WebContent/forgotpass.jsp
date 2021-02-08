@@ -4,14 +4,14 @@ pageEncoding="ISO-8859-1"%>
 <html>
   <head>
     <meta charset="ISO-8859-1" />
-    <title>Home-LMS</title>
+    <title>Forgot your password</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="forgotpass.css" />
   </head>
   <body>
-    <h1>Welcome. You are logged in</h1>
+    <h1>Check your registered mail</h1>
   </body>
 </html>
