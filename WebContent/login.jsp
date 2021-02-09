@@ -18,12 +18,14 @@ pageEncoding="ISO-8859-1"%>
     >
 
     <div class="sign-up-form">
-      <form name="loginForm" action="home.jsp" method="post">
+      <form name="loginForm" action="login" method="post">
         <label for="email">Email: </label>
         <input
           name="email"
           type="email"
           class="input-box"
+          pattern = "[a-z0-9._%+-]+@kluniversity.in"
+          title="Enter your kluniversity.in email address"
           placeholder="Enter your email"
           required
         />
@@ -32,6 +34,11 @@ pageEncoding="ISO-8859-1"%>
           name="password"
           type="password"
           class="input-box"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Password must contain at least
+          -one  number 
+          -one uppercase and lowercase letter
+          -at least 8 or more characters."
           placeholder="Enter your password"
           required
         />

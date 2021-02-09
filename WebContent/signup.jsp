@@ -18,7 +18,7 @@ pageEncoding="ISO-8859-1"%>
     >
 
     <div class="sign-up-form">
-      <form action="" method="post">
+      <form name="signForm" action="signup" method="post">
         <label for="fname">First name:</label>
         <input
           type="text"
@@ -30,14 +30,13 @@ pageEncoding="ISO-8859-1"%>
           autofocus
         />
 
-        <label for="lname">Last name:</label>
+        <label for="lname">Last name (optional):</label>
         <input
           type="text"
           id="lname"
           name="lname"
           class="input-box"
           placeholder="Enter your Last name"
-          required
         />
 
         <label for="phno">Phone number: </label>
@@ -46,6 +45,7 @@ pageEncoding="ISO-8859-1"%>
           class="input-box"
           name="phno"
           pattern="[0-9]{10}"
+          title="mobile number should be 10 digits"
           placeholder="Enter your phone number"
           required
         />
@@ -55,6 +55,8 @@ pageEncoding="ISO-8859-1"%>
           type="email"
           class="input-box"
           name="email"
+          pattern = "[a-z0-9._%+-]+@kluniversity.in"
+          title="Enter your kluniversity.in email address"
           placeholder="Enter your email"
           required
         />
@@ -62,18 +64,23 @@ pageEncoding="ISO-8859-1"%>
         <label for="password">Password: </label>
         <input
           type="password"
-          class="input-box"
           name="password"
+          class="input-box"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Password must contain at least
+          one number, 
+          one uppercase and lowercase letter,
+          at least 8 or more characters."
           placeholder="Enter your password"
           required
         />
-
+        
         <span><input type="checkbox" required /></span>I agree to terms and
         conditions of services
         <button type="submit">SIGN UP</button>
       </form>
       <hr />
-      <form action="login.jsp" method="get">
+      <form action="login.jsp">
         <button type="submit">LOGIN</button>
       </form>
     </div>
