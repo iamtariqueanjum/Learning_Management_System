@@ -12,6 +12,6 @@ pageEncoding="ISO-8859-1"%>
     <link rel="stylesheet" href="forgotpass.css" />
   </head>
   <body>
-    <h1>Check your registered mail</h1>
+    <h1>Check Your Registered Mail</h1>
   </body>
 </html>
