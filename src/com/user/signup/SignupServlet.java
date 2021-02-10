@@ -66,16 +66,12 @@ public class SignupServlet extends HttpServlet {
             	out.println("alert('Registration Successfull!!!');");
             	out.println("location='signup.jsp';");
             	out.println("</script>");
-            	RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
-            	rs.include(request, response);
-    		}
+            }
     		else {
     			out.println("<script type=\"text/javascript\">");
             	out.println("alert('Registration UnSuccessfull!!!');");
             	out.println("location='signup.jsp';");
             	out.println("</script>");
-            	RequestDispatcher rs = request.getRequestDispatcher("signup.jsp");
-            	rs.include(request, response);
     		}
             con.close();
         }

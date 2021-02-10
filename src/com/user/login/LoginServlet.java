@@ -40,16 +40,15 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub		else
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
+    	PrintWriter out = response.getWriter();
         if(Validate.checkUser(email, password))
         {
-            RequestDispatcher rs = request.getRequestDispatcher("home.jsp");		
+            RequestDispatcher rs = request.getRequestDispatcher("home.jsp");
             rs.forward(request, response);
         }
         else
         {
         	response.setContentType("text/html");
-        	PrintWriter out = response.getWriter();
         	out.println("<script type=\"text/javascript\">");
         	out.println("alert('Email or password is incorrect');");
         	out.println("location='login.jsp';");
