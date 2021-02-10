@@ -8,8 +8,8 @@ public class Validate {
         boolean st =false;
         try {
         	Class.forName("oracle.jdbc.driver.OracleDriver");
-			String dbuser = "TARIQUE";
-			String dbpswd = "190031065@17";
+			String dbuser = "system";
+			String dbpswd = "33535";
 			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM SIGNUP where email=? and password=?");
             ps.setString(1, email);

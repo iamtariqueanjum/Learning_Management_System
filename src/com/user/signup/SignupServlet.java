@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  * Servlet implementation class SignupServlet
  */
@@ -48,36 +47,43 @@ public class SignupServlet extends HttpServlet {
         String password = request.getParameter("password");
         try {
         	Class.forName("oracle.jdbc.driver.OracleDriver");
-			String dbuser = "TARIQUE";
-			String dbpswd = "190031065@17";
+			String dbuser = "system";
+			String dbpswd = "33535";
 			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
-			String sql="INSERT INTO SIGNUP(FIRSTNAME,LASTNAME,PHONE,EMAIL,PASSWORD) VALUES(?,?,?,?,?)";
-			PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, firstname);
-            ps.setString(2, lastname);
-            ps.setString(3, phone);
-            ps.setString(4, email);
-            ps.setString(5, password);
-            int i = ps.executeUpdate();
-            PrintWriter out=response.getWriter();
+			PrintWriter out=response.getWriter();
             response.setContentType("text/html");
-        	if(i>0) {
-    			out.println("<script type=\"text/javascript\">");
-            	out.println("alert('Registration Successfull!!!');");
+			if(Validate.fetchUser(email)) {
+				out.println("<script type=\"text/javascript\">");
+            	out.println("alert('You are already registered with this email!!!');");
             	out.println("location='signup.jsp';");
             	out.println("</script>");
-            }
-    		else {
-    			out.println("<script type=\"text/javascript\">");
-            	out.println("alert('Registration UnSuccessfull!!!');");
-            	out.println("location='signup.jsp';");
-            	out.println("</script>");
-    		}
-            con.close();
+			}
+			else {
+				String sql="INSERT INTO SIGNUP(FIRSTNAME,LASTNAME,PHONE,EMAIL,PASSWORD) VALUES(?,?,?,?,?)";
+				PreparedStatement ps = con.prepareStatement(sql);
+	            ps.setString(1, firstname);
+	            ps.setString(2, lastname);
+	            ps.setString(3, phone);
+	            ps.setString(4, email);
+	            ps.setString(5, password);
+	            int i = ps.executeUpdate();
+	            if(i>0) {
+	    			out.println("<script type=\"text/javascript\">");
+	            	out.println("alert('Registration Successfull!!!');");
+	            	out.println("location='signup.jsp';");
+	            	out.println("</script>");
+	            }
+	    		else {
+	    			out.println("<script type=\"text/javascript\">");
+	            	out.println("alert('Registration UnSuccessfull!!!');");
+	            	out.println("location='signup.jsp';");
+	            	out.println("</script>");
+	    		}
+	            con.close();
+			}
         }
 		catch(Exception e) {
 			System.out.println(e);
 		}
 	}
-
 }
