@@ -47,12 +47,12 @@ public class SignupServlet extends HttpServlet {
         String password = request.getParameter("password");
         try {
         	Class.forName("oracle.jdbc.driver.OracleDriver");
-			String dbuser = "system";
-			String dbpswd = "33535";
+			String dbuser = "TARIQUE";
+			String dbpswd = "190031065@17";
 			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
 			PrintWriter out=response.getWriter();
             response.setContentType("text/html");
-			if(Validate.fetchUser(email)) {
+			if(FetchUser.fetchUser(email)) {
 				out.println("<script type=\"text/javascript\">");
             	out.println("alert('You are already registered with this email!!!');");
             	out.println("location='signup.jsp';");
