@@ -2,7 +2,7 @@ package com.user.login;
 
 import java.sql.*;
 
-public class Validate {
+public class UserValidate {
     public static boolean checkUser(String email,String password) 
     {
         boolean st =false;

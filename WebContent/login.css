@@ -45,12 +45,10 @@ a:hover {
   background-color: white;
   font-size: 15px;
 }
-
 hr {
   margin-top: 20px;
   width: 80%;
 }
-
 marquee {
   left: 0;
   bottom: 0;

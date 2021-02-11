@@ -15,4 +15,10 @@ pageEncoding="ISO-8859-1"%>
     <h1>Welcome. You are logged in</h1>
     <a href='login.jsp'>Logout</a>
   </body>
+  <footer>
+      <p>
+        For any queries,Contact us<br />
+        <a href="mailto:p6@example.com">p6@example.com</a>
+      </p>
+	</footer>
 </html>

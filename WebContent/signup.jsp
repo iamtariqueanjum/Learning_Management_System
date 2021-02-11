@@ -4,21 +4,17 @@ pageEncoding="ISO-8859-1"%>
 <html>
   <head>
     <meta charset="ISO-8859-1" />
-    <title>LMS SIGN UP</title>
-    <link rel="stylesheet" href="signup.css" />
+    <title>STUDENT SIGN UP - LMS</title>
+    <link rel="stylesheet" href="login.css" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
   </head>
   <body>
-    <marquee behavior="scroll" direction="left" style="font-size: 200%">
-      WELCOME TO LEARNING MANAGEMENT SYSTEM.YOU CAN CREATE YOUR ACCOUNT
-      HERE.</marquee
-    >
-
     <div class="sign-up-form">
       <form name="signForm" action="signup" method="post">
+      	<label>STUDENT SIGNUP</label><br>
         <label for="fname">First name:</label>
         <input
           type="text"
@@ -79,16 +75,20 @@ pageEncoding="ISO-8859-1"%>
         conditions of services
         <button type="submit">SIGN UP</button>
       </form>
-      <hr />
+      <br>
       <form action="login.jsp">
         <button type="submit">LOGIN</button>
       </form>
+      <br>
+      <form action="index.jsp">
+		<button type="submit">SELECT PORTAL</button>
+	  </form>
     </div>
     <footer>
       <p>
-        Contact us<br />
+        For any queries,Contact us<br />
         <a href="mailto:p6@example.com">p6@example.com</a>
       </p>
-    </footer>
+	</footer>
   </body>
 </html>
