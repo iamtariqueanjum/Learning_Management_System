@@ -13,7 +13,7 @@ pageEncoding="ISO-8859-1"%>
   </head>
   <body>
     <h1>Welcome. You are logged in</h1>
-    <a href='login.jsp'>Logout</a>
+    <a href='Logout'>Logout</a>
   </body>
   <footer>
       <p>

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class LoginServlet
@@ -43,8 +44,9 @@ public class UserLoginServlet extends HttpServlet {
     	PrintWriter out = response.getWriter();
         if(UserValidate.checkUser(email, password))
         {
-            RequestDispatcher rs = request.getRequestDispatcher("home.jsp");
-            rs.forward(request, response);
+        	HttpSession session=request.getSession();
+        	session.setAttribute("email", email);
+        	request.getRequestDispatcher("UserHome").include(request,response);
         }
         else
         {

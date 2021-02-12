@@ -12,7 +12,7 @@
   </head>
   <body>
     <h1>Welcome Faculty. You are logged in</h1>
-    <a href='facultyLogin.jsp'>Logout</a>
+    <a href='Logout'>Logout</a>
   </body>
   <footer>
       <p>

@@ -1,4 +1,4 @@
-package com.faculty.login;
+package com.user.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,18 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
- * Servlet implementation class FacultyLoginServlet
+ * Servlet implementation class UserHome
  */
-@WebServlet("/facultyLogin")
-public class FacultyLoginServlet extends HttpServlet {
+@WebServlet("/UserHome")
+public class UserHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FacultyLoginServlet() {
+    public UserHome() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +31,8 @@ public class FacultyLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect(request.getContextPath() + "/facultyLogin.jsp");
+
+		response.sendRedirect(request.getContextPath() + "/home.jsp");
 	}
 
 	/**
@@ -40,25 +40,18 @@ public class FacultyLoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String facemail = request.getParameter("facemail");
-        String facpassword = request.getParameter("facpassword");
-    	PrintWriter out = response.getWriter();
-        if(FacultyValidate.checkFaculty(facemail, facpassword))
-        {
-        	HttpSession session=request.getSession();
-        	session.setAttribute("facemail", facemail);
-        	request.getRequestDispatcher("facultyHome").include(request,response);
-        }
-        else
-        {
-        	response.setContentType("text/html");
-        	out.println("<script type=\"text/javascript\">");
-        	out.println("alert('Email or password is incorrect');");
-        	out.println("location='facultyLogin.jsp';");
-        	out.println("</script>");
-        	RequestDispatcher rs = request.getRequestDispatcher("facultyLogin.jsp");
+		response.setContentType("text/html");
+		PrintWriter out=response.getWriter();
+		HttpSession session=request.getSession(false);
+		if(session!=null) {
+			RequestDispatcher rs = request.getRequestDispatcher("home.jsp");
         	rs.include(request, response);
-        }
+		}
+		else {
+			out.print("Please login First");
+        	RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
+        	rs.include(request, response);
+		}
 	}
 
 }
