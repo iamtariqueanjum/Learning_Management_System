@@ -13,6 +13,17 @@
     />
   </head>
   <body>
+   <%
+  	if(session.getAttribute("facemail")!=null){
+  		response.setContentType("text/html");
+    	out.println("<script type=\"text/javascript\">");
+    	out.println("alert('You were Already Logged in');");
+    	out.println("location='facultyHome.jsp';");
+    	out.println("</script>");
+    	RequestDispatcher rs = request.getRequestDispatcher("facultyHome.jsp");
+    	rs.include(request, response);
+  	}
+  %>
 	<marquee behavior="scroll" direction="left" style="font-size: 200%">
 	      WELCOME TO LEARNING MANAGEMENT SYSTEM. YOU CAN ACCESS YOUR ACCOUNT
 	      HERE.

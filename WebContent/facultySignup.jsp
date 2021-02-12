@@ -12,6 +12,17 @@
 	    />
 	</head>
 	<body>
+	 <%
+  	if(session.getAttribute("facemail")!=null){
+  		response.setContentType("text/html");
+    	out.println("<script type=\"text/javascript\">");
+    	out.println("alert('You were Already Logged in');");
+    	out.println("location='facultyHome.jsp';");
+    	out.println("</script>");
+    	RequestDispatcher rs = request.getRequestDispatcher("facultyHome.jsp");
+    	rs.include(request, response);
+  	}
+  %>
 		<div class="sign-up-form">
 	      <form name="signForm" action="facultySignup" method="post">
 	      	<label>FACULTY SIGNUP</label><br>

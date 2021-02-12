@@ -12,6 +12,17 @@ pageEncoding="ISO-8859-1"%>
     />
   </head>
   <body>
+  <%
+  	if(session.getAttribute("email")!=null){
+  		response.setContentType("text/html");
+    	out.println("<script type=\"text/javascript\">");
+    	out.println("alert('You were Already Logged in');");
+    	out.println("location='home.jsp';");
+    	out.println("</script>");
+    	RequestDispatcher rs = request.getRequestDispatcher("home.jsp");
+    	rs.include(request, response);
+  	}
+  %>
     <div class="sign-up-form">
       <form name="signForm" action="signup" method="post">
       	<label>STUDENT SIGNUP</label><br>
