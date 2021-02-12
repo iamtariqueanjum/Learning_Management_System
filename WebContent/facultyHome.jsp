@@ -11,8 +11,15 @@
     />
   </head>
   <body>
+  <%
+  	if(session.getAttribute("facemail")==null){
+  		response.sendRedirect("facultyLogin.jsp");
+  	}
+  %>
     <h1>Welcome Faculty. You are logged in</h1>
-    <a href='Logout'>Logout</a>
+    <form action="Logout">
+    	<input type="submit" value="Logout">
+    </form>
   </body>
   <footer>
       <p>

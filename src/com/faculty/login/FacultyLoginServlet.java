@@ -47,7 +47,7 @@ public class FacultyLoginServlet extends HttpServlet {
         {
         	HttpSession session=request.getSession();
         	session.setAttribute("facemail", facemail);
-        	request.getRequestDispatcher("facultyHome").include(request,response);
+        	response.sendRedirect("facultyHome.jsp");
         }
         else
         {

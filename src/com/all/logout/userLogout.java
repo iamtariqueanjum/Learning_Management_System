@@ -1,9 +1,6 @@
-package com.faculty.login;
+package com.all.logout;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class facultyHome
+ * Servlet implementation class userLogout
  */
-@WebServlet("/facultyHome")
-public class facultyHome extends HttpServlet {
+@WebServlet("/userLogout")
+public class userLogout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public facultyHome() {
+    public userLogout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +29,10 @@ public class facultyHome extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		response.sendRedirect(request.getContextPath() + "/facultyHome.jsp");
+		HttpSession session = request.getSession();
+		session.removeAttribute("email");
+		session.invalidate();
+		response.sendRedirect("login.jsp");
 	}
 
 	/**
@@ -40,20 +40,7 @@ public class facultyHome extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		response.setContentType("text/html");
-		PrintWriter out=response.getWriter();
-		HttpSession session=request.getSession(false);
-		if(session!=null) {
-			RequestDispatcher rs = request.getRequestDispatcher("facultyHome.jsp");
-        	rs.include(request, response);
-		}
-		else {
-			out.print("Please login First");
-        	RequestDispatcher rs = request.getRequestDispatcher("facultyLogin.jsp");
-        	rs.include(request, response);
-		}
-		
+		doGet(request, response);
 	}
 
 }

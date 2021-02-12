@@ -12,8 +12,15 @@ pageEncoding="ISO-8859-1"%>
     <link rel="stylesheet" href="home.css" />
   </head>
   <body>
+  <%
+  	if(session.getAttribute("email")==null){
+  		response.sendRedirect("login.jsp");
+  	}
+  %>
     <h1>Welcome. You are logged in</h1>
-    <a href='Logout'>Logout</a>
+    <form action="userLogout">
+    	<input type="submit" value="Logout">
+    </form>
   </body>
   <footer>
       <p>
