@@ -31,7 +31,7 @@ public class AdminLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect(request.getContextPath() + "/adminLogin.jsp");
+		doPost(request,response);
 	}
 
 	/**
@@ -39,26 +39,7 @@ public class AdminLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String adminUsername = request.getParameter("adminUsername");
-        String adminPass = request.getParameter("adminPass");
-    	PrintWriter out = response.getWriter();
-        if(adminUsername=="admin" && adminPass=="Admin12345")
-        {
-        	HttpSession session=request.getSession();
-        	session.setAttribute("adminUsername", adminUsername);
-        	RequestDispatcher rs = request.getRequestDispatcher("adminHome.jsp");
-        	rs.include(request, response);
-        }
-        else
-        {
-        	response.setContentType("text/html");
-        	out.println("<script type=\"text/javascript\">");
-        	out.println("alert('username or password is incorrect');");
-        	out.println("location='adminLogin.jsp';");
-        	out.println("</script>");
-        	RequestDispatcher rs = request.getRequestDispatcher("adminLogin.jsp");
-        	rs.include(request, response);
-        }
+		
 	}
 
 }

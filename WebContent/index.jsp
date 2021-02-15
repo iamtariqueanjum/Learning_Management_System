@@ -27,11 +27,6 @@ pageEncoding="ISO-8859-1"%>
         <label>SELECT IF YOU ARE A STUDENT</label>
         <button type="submit">STUDENT PORTAL</button>
       </form>
-      <hr />
-      <form action="adminLogin">
-        <label>SELECT IF YOU ARE A ADMIN</label>
-        <button type="submit">ADMIN PORTAL</button>
-      </form>
     </div>
     <footer>
       <p>
