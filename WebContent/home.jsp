@@ -13,9 +13,14 @@ pageEncoding="ISO-8859-1"%>
   </head>
   <body>
   <%
-  	if(session.getAttribute("email")==null){
-  		response.sendRedirect("login.jsp");
-  	}
+  if(session.getAttribute("email")==null) {
+		response.setContentType("text/html");
+  	out.println("<script type=\"text/javascript\">");
+  	out.println("alert('Login First');");
+  	out.println("location='home.jsp';");
+  	out.println("</script>");
+		response.sendRedirect("login.jsp");
+	}
   %>
     <h1>Welcome. You are logged in</h1>
     <form action="userLogout">

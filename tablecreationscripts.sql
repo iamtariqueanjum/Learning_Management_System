@@ -35,3 +35,25 @@ BOOKNAME VARCHAR(75),
 AUTHOR VARCHAR(50),
 COURSE VARCHAR(50)
 );
+
+CREATE TABLE StuloginData (
+email varchar(30),
+LoginTime TimeStamp,
+Lcount int
+);
+
+CREATE TABLE StulogoutData (
+email varchar(30),
+LogoutTime TimeStamp
+);
+
+CREATE TABLE FacloginData (
+facemail varchar(30),
+LoginTime TimeStamp,
+Lcount int
+);
+
+CREATE TABLE FaclogoutData (
+facemail varchar(30),
+LogoutTime TimeStamp
+);

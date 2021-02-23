@@ -2,6 +2,10 @@ package com.faculty.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,11 +46,29 @@ public class FacultyLoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String facemail = request.getParameter("facemail");
         String facpassword = request.getParameter("facpassword");
+        int count=0;
     	PrintWriter out = response.getWriter();
         if(FacultyValidate.checkFaculty(facemail, facpassword))
         {
         	HttpSession session=request.getSession();
         	session.setAttribute("facemail", facemail);
+        	try {
+        		Class.forName("oracle.jdbc.driver.OracleDriver");
+    			String dbuser = "system";
+    			String dbpswd = "33535";
+         		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
+        		PreparedStatement ps = con.prepareStatement("INSERT INTO FacloginData(facemail,LoginTime,Lcount) VALUES(?,CURRENT_TIMESTAMP,?)");
+        		PreparedStatement ps1 = con.prepareStatement("update FacloginData set Lcount=Lcount+1 where facemail=?");
+        		ps1.setString(1, facemail);
+        		ResultSet rs1 = ps1.executeQuery();
+        		ps.setString(1, facemail);
+                ps.setInt(2,count+1);
+                ResultSet rs = ps.executeQuery();
+        		con.close();
+        	}
+        	catch(Exception e) {
+        		e.printStackTrace();
+        	}
         	response.sendRedirect("facultyHome.jsp");
         }
         else
