@@ -9,6 +9,8 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
   <%
@@ -16,15 +18,28 @@
   		response.sendRedirect("facultyLogin.jsp");
   	}
   %>
-    <h1>Welcome Faculty. You are logged in</h1>
-    <form action="Logout">
-    	<input type="submit" value="Logout">
-    </form>
+  <nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">LMS</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li class="active"><a href="#">Home</a></li>
+	      <li class="dropdown">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">COURSE
+	        <span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	          <li><a href="#">ADD A TEST</a></li>
+	          <li><a href="#">DELETE A TEST</a></li>
+	          <li><a href="#">VIEW STUDENTS</a></li>
+	        </ul>
+	      </li>
+	    </ul>
+		<form class="navbar-form navbar-right" action="Logout">
+	      <button type="submit" class="btn btn-default">Logout</button>
+	    </form>
+	  </div>
+	</nav>
+	<h1>Welcome</h1>
   </body>
-  <footer>
-      <p>
-        For any queries,Contact us<br />
-        <a href="mailto:p6@example.com">p6@example.com</a>
-      </p>
-	</footer>
 </html>

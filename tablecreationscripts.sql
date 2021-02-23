@@ -57,3 +57,10 @@ CREATE TABLE FaclogoutData (
 facemail varchar(30),
 LogoutTime TimeStamp
 );
+
+CREATE TABLE ADMINCRED(
+adminusr varchar(30),
+adminpass varchar(30)
+);
+
+INSERT INTO ADMINCRED values ('admin','admin@1234');

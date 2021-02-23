@@ -80,10 +80,7 @@ pageEncoding="ISO-8859-1"%>
           at least 8 or more characters."
           placeholder="Enter your password"
           required
-        />
-        
-        <span><input type="checkbox" required /></span>I agree to terms and
-        conditions of services
+        /> 
         <button type="submit">SIGN UP</button>
       </form>
       <br>

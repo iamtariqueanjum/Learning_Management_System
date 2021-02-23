@@ -58,10 +58,6 @@
         <hr />
       </form>
       <a href="forgotpass.jsp">Forgot your password?</a><br>
-      <b>Are you a new user?</b>
-      <form action="facultySignup.jsp" method="get">
-        <button type="submit">SIGN UP</button>
-      </form>
       <br>
       <form action="index.jsp">
 		<button type="submit">SELECT PORTAL</button>
