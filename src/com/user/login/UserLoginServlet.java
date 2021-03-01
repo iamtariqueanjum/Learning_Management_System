@@ -45,7 +45,6 @@ public class UserLoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub		else
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
-        int count=0;
     	PrintWriter out = response.getWriter();
         if(UserValidate.checkUser(email, password))
         {
@@ -56,12 +55,9 @@ public class UserLoginServlet extends HttpServlet {
     			String dbuser = "system";
     			String dbpswd = "33535";
          		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
-        		PreparedStatement ps = con.prepareStatement("INSERT INTO StuloginData(email,LoginTime,Lcount) VALUES(?,CURRENT_TIMESTAMP,?)");
-        		PreparedStatement ps1 = con.prepareStatement("update StuloginData set Lcount=Lcount+1 where email=?");
-        		ps1.setString(1, email);
-        		ResultSet rs1 = ps1.executeQuery();
+         		
+        		PreparedStatement ps = con.prepareStatement("INSERT INTO StuloginData(email,LoginTime) VALUES(?,CURRENT_TIMESTAMP)");
         		ps.setString(1, email);
-                ps.setInt(2,count+1);
                 ResultSet rs = ps.executeQuery();
         		con.close();
         	}

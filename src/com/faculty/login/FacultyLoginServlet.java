@@ -46,7 +46,6 @@ public class FacultyLoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String facemail = request.getParameter("facemail");
         String facpassword = request.getParameter("facpassword");
-        int count=0;
     	PrintWriter out = response.getWriter();
         if(FacultyValidate.checkFaculty(facemail, facpassword))
         {
@@ -57,12 +56,8 @@ public class FacultyLoginServlet extends HttpServlet {
     			String dbuser = "system";
     			String dbpswd = "33535";
          		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
-        		PreparedStatement ps = con.prepareStatement("INSERT INTO FacloginData(facemail,LoginTime,Lcount) VALUES(?,CURRENT_TIMESTAMP,?)");
-        		PreparedStatement ps1 = con.prepareStatement("update FacloginData set Lcount=Lcount+1 where facemail=?");
-        		ps1.setString(1, facemail);
-        		ResultSet rs1 = ps1.executeQuery();
+        		PreparedStatement ps = con.prepareStatement("INSERT INTO FacloginData(facemail,LoginTime) VALUES(?,CURRENT_TIMESTAMP)");
         		ps.setString(1, facemail);
-                ps.setInt(2,count+1);
                 ResultSet rs = ps.executeQuery();
         		con.close();
         	}
