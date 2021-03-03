@@ -1,4 +1,4 @@
-package com.all.logout;
+package com.admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

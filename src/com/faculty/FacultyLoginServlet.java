@@ -1,4 +1,4 @@
-package com.faculty.login;
+package com.faculty;
 
 import java.io.IOException;
 import java.io.PrintWriter;

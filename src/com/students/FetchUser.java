@@ -1,20 +1,20 @@
-package com.faculty.signup;
+package com.students;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class FetchFaculty {
-	public static boolean fetchUser(String facemail) {
+public class FetchUser {
+	public static boolean fetchUser(String email) {
 		boolean found = false;
 		 try {
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
-		     String dbuser = "TARIQUE";
-		     String dbpswd = "190031065@17";
+		     String dbuser = "system";
+		     String dbpswd = "33535";
 		     Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
-		     PreparedStatement ps = con.prepareStatement("SELECT * FROM FACULTY where facemail=?");
-		     ps.setString(1, facemail);
+		     PreparedStatement ps = con.prepareStatement("SELECT * FROM SIGNUP where email=?");
+		     ps.setString(1, email);
 		     ResultSet rs = ps.executeQuery();
 		     found = rs.next();
 		     con.close();  
@@ -23,5 +23,5 @@ public class FetchFaculty {
 		          e.printStackTrace();
 		 }
 		 return found;    	 
-	}
+	}   
 }
