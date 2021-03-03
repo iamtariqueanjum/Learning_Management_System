@@ -13,13 +13,13 @@
 	</head>
 	<body>
 	 <%
-  	if(session.getAttribute("facemail")!=null){
+  	if(session.getAttribute("adminusername")==null){
   		response.setContentType("text/html");
     	out.println("<script type=\"text/javascript\">");
-    	out.println("alert('You were Already Logged in');");
-    	out.println("location='facultyHome.jsp';");
+    	out.println("alert('Admin Access Only!!!');");
+    	out.println("location='adminLogin.jsp';");
     	out.println("</script>");
-    	RequestDispatcher rs = request.getRequestDispatcher("facultyHome.jsp");
+    	RequestDispatcher rs = request.getRequestDispatcher("adminLogin.jsp");
     	rs.include(request, response);
   	}
   %>
