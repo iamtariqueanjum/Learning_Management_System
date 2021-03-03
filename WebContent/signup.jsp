@@ -13,13 +13,13 @@ pageEncoding="ISO-8859-1"%>
   </head>
   <body>
   <%
-  	if(session.getAttribute("email")!=null){
+  	if(session.getAttribute("adminusername")==null){
   		response.setContentType("text/html");
     	out.println("<script type=\"text/javascript\">");
-    	out.println("alert('You were Already Logged in');");
-    	out.println("location='home.jsp';");
+    	out.println("alert('Admin Access Only!!!');");
+    	out.println("location='adminLogin.jsp';");
     	out.println("</script>");
-    	RequestDispatcher rs = request.getRequestDispatcher("home.jsp");
+    	RequestDispatcher rs = request.getRequestDispatcher("adminLogin.jsp");
     	rs.include(request, response);
   	}
   %>
