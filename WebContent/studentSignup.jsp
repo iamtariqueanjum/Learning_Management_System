@@ -5,11 +5,13 @@ pageEncoding="ISO-8859-1"%>
   <head>
     <meta charset="ISO-8859-1" />
     <title>STUDENT SIGN UP - LMS</title>
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
   <%
@@ -24,33 +26,36 @@ pageEncoding="ISO-8859-1"%>
   	}
   %>
     <div class="sign-up-form">
-      <form name="signForm" action="signup" method="post">
+      <form name="signForm" action="studentSignup" method="post">
       	<label>STUDENT SIGNUP</label><br>
-        <label for="fname">First name:</label>
+      	<label for="regid">REG ID:</label>
         <input
           type="text"
-          id="fname"
-          name="fname"
+          id="regid"
+          name="regid"
           class="input-box"
-          placeholder="Enter your First name"
+          placeholder="Enter your ID number"
+          pattern="[0-9]{9}"
+          title="ID number should be 9 digits"
+          required
+          autofocus
+        />
+        <label for="fullname">Full name:</label>
+        <input
+          type="text"
+          id="fullname"
+          name="fullname"
+          class="input-box"
+          placeholder="Enter your Full name"
           required
           autofocus
         />
 
-        <label for="lname">Last name (optional):</label>
-        <input
-          type="text"
-          id="lname"
-          name="lname"
-          class="input-box"
-          placeholder="Enter your Last name"
-        />
-
-        <label for="phno">Phone number: </label>
+        <label for="phone">Phone number: </label>
         <input
           type="text"
           class="input-box"
-          name="phno"
+          name="phone"
           pattern="[0-9]{10}"
           title="mobile number should be 10 digits"
           placeholder="Enter your phone number"
@@ -84,7 +89,7 @@ pageEncoding="ISO-8859-1"%>
         <button type="submit">SIGN UP</button>
       </form>
       <br>
-      <form action="login.jsp">
+      <form action="studentLogin.jsp">
         <button type="submit">LOGIN</button>
       </form>
       <br>

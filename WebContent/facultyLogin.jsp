@@ -5,24 +5,44 @@
   <head>
     <meta charset="ISO-8859-1" />
     <title>FACULTY LOGIN - LMS</title>
-    <link rel="stylesheet" href="login.css" />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
    <%
-  	if(session.getAttribute("facemail")!=null){
-  		response.setContentType("text/html");
-    	out.println("<script type=\"text/javascript\">");
-    	out.println("alert('You were Already Logged in');");
-    	out.println("location='facultyHome.jsp';");
-    	out.println("</script>");
-    	RequestDispatcher rs = request.getRequestDispatcher("facultyHome.jsp");
-    	rs.include(request, response);
-  	}
+ 	if(session.getAttribute("adminusername")!=null){
+ 		response.setContentType("text/html");
+   	out.println("<script type=\"text/javascript\">");
+   	out.println("alert('You were Already Logged in');");
+   	out.println("location='adminHome.jsp';");
+   	out.println("</script>");
+   	RequestDispatcher rs = request.getRequestDispatcher("adminHome.jsp");
+   	rs.include(request, response);
+ 	}
+	if(session.getAttribute("email")!=null){
+ 		response.setContentType("text/html");
+   	out.println("<script type=\"text/javascript\">");
+   	out.println("alert('You were Already Logged in');");
+   	out.println("location='studentHome.jsp';");
+   	out.println("</script>");
+   	RequestDispatcher rs = request.getRequestDispatcher("studentHome.jsp");
+   	rs.include(request, response);
+ 	}
+	if(session.getAttribute("facultyemail")!=null){
+		response.setContentType("text/html");
+	  	out.println("<script type=\"text/javascript\">");
+	  	out.println("alert('You were Already Logged in');");
+	  	out.println("location='facultyHome.jsp';");
+	  	out.println("</script>");
+	  	RequestDispatcher rs = request.getRequestDispatcher("facultyHome.jsp");
+	  	rs.include(request, response);
+	}
+ 	%>
   %>
 	<marquee behavior="scroll" direction="left" style="font-size: 200%">
 	      WELCOME TO LEARNING MANAGEMENT SYSTEM. YOU CAN ACCESS YOUR ACCOUNT
@@ -31,9 +51,9 @@
     <div class="sign-up-form">
       <form name="loginForm" action="facultyLogin" method="post">
       	<label>FACULTY LOGIN</label><br>
-        <label for="facemail">Email: </label>
+        <label for="facultyemail">Email: </label>
         <input
-          name="facemail"
+          name="facultyemail"
           type="email"
           class="input-box"
           pattern = "[a-z0-9._%+-]+@kluniversity.in"
@@ -41,9 +61,9 @@
           placeholder="Enter your email"
           required
         />
-        <label for="facpassword">Password: </label>
+        <label for="facultypassword">Password: </label>
         <input
-          name="facpassword"
+          name="facultypassword"
           type="password"
           class="input-box"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"

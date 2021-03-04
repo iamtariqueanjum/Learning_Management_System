@@ -1,25 +1,23 @@
 package com.faculty;
 
+import com.jdbc.JdbcConnection;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class FacultyValidate {
-    public static boolean checkFaculty(String facemail,String facpassword) 
+    public static boolean checkFaculty(String facultyemail,String facultypassword) 
     {
         boolean st =false;
         try {
-        	Class.forName("oracle.jdbc.driver.OracleDriver");
-			String dbuser = "system";
-			String dbpswd = "33535";
-			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM FACULTY where facemail=? and facpassword=?");
-            ps.setString(1, facemail);
-            ps.setString(2, facpassword);
+        	Connection con = JdbcConnection.getConnection();
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM FACULTY WHERE EMAIL=? and PASSWORD=?");
+            ps.setString(1, facultyemail);
+            ps.setString(2, facultypassword);
             ResultSet rs = ps.executeQuery();
             st = rs.next();
-            con.close();
+            JdbcConnection.closeConnection();
         }
         catch(Exception e) {
             e.printStackTrace();

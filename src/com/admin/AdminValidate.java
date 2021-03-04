@@ -1,25 +1,23 @@
 package com.admin;
 
 import java.sql.*;
+import com.jdbc.JdbcConnection;
 
 public class AdminValidate {
 	public static boolean checkAdmin(String uname,String pass) {
-		boolean st =false;
+		boolean valid =false;
         try {
-        	Class.forName("oracle.jdbc.driver.OracleDriver");
-			String dbuser = "system";
-			String dbpswd = "33535";
-			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM ADMINCRED where adminusr=? and adminpass=?");
+        	Connection con = JdbcConnection.getConnection();
+        	PreparedStatement ps = con.prepareStatement("SELECT * FROM ADMINCRED WHERE ADMINUSERNAME=? AND ADMINPASSWORD=?");
             ps.setString(1, uname);
             ps.setString(2, pass);
             ResultSet rs = ps.executeQuery();
-            st = rs.next();
-            con.close();
+            valid = rs.next();
+            JdbcConnection.closeConnection();
         }
         catch(Exception e) {
             e.printStackTrace();
         }
-        return st;
+        return valid;
 	}
 }

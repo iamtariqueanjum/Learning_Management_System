@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  * Servlet implementation class AdminLogin
  */
-@WebServlet("/admin")
+@WebServlet("/adminLogin")
 public class AdminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,35 +29,34 @@ public class AdminLogin extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.sendRedirect(request.getContextPath() + "/adminLogin.jsp");
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        response.sendRedirect(request.getContextPath() + "/adminLogin.jsp");
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String adminusername = request.getParameter("adminusername");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        String adminusername = request.getParameter("adminusername");
         String adminpassword = request.getParameter("adminpassword");
         PrintWriter out = response.getWriter();
         if(AdminValidate.checkAdmin(adminusername, adminpassword))
         {
-        	HttpSession session=request.getSession();
-        	session.setAttribute("adminusername", adminusername);
-        	response.sendRedirect("adminHome.jsp");
+          HttpSession session=request.getSession();
+          session.setAttribute("adminusername", adminusername);
+          response.sendRedirect("adminHome.jsp");
         }
         else
         {
-        	response.setContentType("text/html");
-        	out.println("<script type=\"text/javascript\">");
-        	out.println("alert('Username or password is incorrect');");
-        	out.println("location='adminLogin.jsp';");
-        	out.println("</script>");
-        	RequestDispatcher rs = request.getRequestDispatcher("adminLogin.jsp");
-        	rs.include(request, response);
-        }
-	}
-
+          response.setContentType("text/html");
+          out.println("<script type=\"text/javascript\">");
+          out.println("alert('Username or password is incorrect');");
+          out.println("location='adminLogin.jsp';");
+          out.println("</script>");
+          RequestDispatcher rs = request.getRequestDispatcher("adminLogin.jsp");
+      	  rs.include(request, response);
+        }        
+    }
 }

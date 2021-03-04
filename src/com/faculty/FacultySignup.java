@@ -1,26 +1,29 @@
-package com.students;
+package com.faculty;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.jdbc.JdbcConnection;
+
 /**
- * Servlet implementation class SignupServlet
+ * Servlet implementation class FacultySignupServlet
  */
-@WebServlet("/signup")
-public class UserSignupServlet extends HttpServlet {
+@WebServlet("/facultySignup")
+public class FacultySignup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserSignupServlet() {
+    public FacultySignup() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +33,7 @@ public class UserSignupServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect(request.getContextPath() + "/signup.jsp");
+		response.sendRedirect(request.getContextPath() + "/facultySignup.jsp");
 	}
 
 	/**
@@ -38,50 +41,48 @@ public class UserSignupServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String firstname = request.getParameter("fname");
-        String lastname = request.getParameter("lname");
-        String phone = request.getParameter("phno");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+		String facid = request.getParameter("facid");
+        String facname = request.getParameter("facname");
+        String facphone = request.getParameter("facphone");
+        String facemail = request.getParameter("facemail");
+        String facpassword = request.getParameter("facpassword");
         try {
-        	Class.forName("oracle.jdbc.driver.OracleDriver");
-			String dbuser = "system";
-			String dbpswd = "33535";
-			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",dbuser,dbpswd);
+        	Connection con = JdbcConnection.getConnection();
 			PrintWriter out=response.getWriter();
             response.setContentType("text/html");
-			if(FetchUser.fetchUser(email)) {
+			if(FetchFaculty.fetchFaculty(facemail)) {
 				out.println("<script type=\"text/javascript\">");
             	out.println("alert('You are already registered with this email!!!');");
-            	out.println("location='signup.jsp';");
+            	out.println("location='facultySignup.jsp';");
             	out.println("</script>");
 			}
 			else {
-				String sql="INSERT INTO SIGNUP(FIRSTNAME,LASTNAME,PHONE,EMAIL,PASSWORD) VALUES(?,?,?,?,?)";
+				String sql="INSERT INTO FACULTY(FACULTYID,FULLNAME,PHONE,EMAIL,PASSWORD) VALUES(?,?,?,?,?)";
 				PreparedStatement ps = con.prepareStatement(sql);
-	            ps.setString(1, firstname);
-	            ps.setString(2, lastname);
-	            ps.setString(3, phone);
-	            ps.setString(4, email);
-	            ps.setString(5, password);
+	            ps.setString(1, facid);
+	            ps.setString(2, facname);
+	            ps.setString(3, facphone);
+	            ps.setString(4, facemail);
+	            ps.setString(5, facpassword);
 	            int i = ps.executeUpdate();
 	            if(i>0) {
 	    			out.println("<script type=\"text/javascript\">");
 	            	out.println("alert('Registration Successfull!!!');");
-	            	out.println("location='signup.jsp';");
+	            	out.println("location='facultySignup.jsp';");
 	            	out.println("</script>");
 	            }
 	    		else {
 	    			out.println("<script type=\"text/javascript\">");
 	            	out.println("alert('Registration UnSuccessfull!!!');");
-	            	out.println("location='signup.jsp';");
+	            	out.println("location='facultySignup.jsp';");
 	            	out.println("</script>");
 	    		}
-	            con.close();
+	            JdbcConnection.closeConnection();
 			}
         }
 		catch(Exception e) {
 			System.out.println(e);
 		}
 	}
+
 }
