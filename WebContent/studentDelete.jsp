@@ -30,19 +30,19 @@
 		<form class="sign-up-form" action="deleteStudent" method="post">
 		  <div class="form-group">
 		    <label for="email">Email address:</label>
-		    <input type="email" class="input-box" id="email" placeholder="Enter email">
+		    <input type="email" class="input-box" id="email" name="email" placeholder="Enter email">
 		  </div>
 		  <div class="form-group">
 		    <label for="cnfrmemail">Confirm Email address:</label>
-		    <input type="email" class="input-box" id="cnfrmemail" placeholder="Enter email again">
+		    <input type="email" class="input-box" id="cnfrmemail" name="cnfrmemail" placeholder="Enter email again">
 		  </div>
 		  <div class="form-group">
 		    <label for="password">Enter Password:</label>
-		    <input type="password" class="input-box" id="password" placeholder="Enter Password">
+		    <input type="password" class="input-box" id="password" name="password" placeholder="Enter Password">
 		  </div>
 		  <div class="form-group">
 		    <label for="cnfrmpassword">Confirm Password:</label>
-		    <input type="password" class="input-box" id="cnfrmpassword" placeholder="Enter Password again">
+		    <input type="password" class="input-box" id="cnfrmpassword" name="cnfrmpassword" placeholder="Enter Password again">
 		  </div>
 		  <button type="submit">Submit</button>
 		</form>
