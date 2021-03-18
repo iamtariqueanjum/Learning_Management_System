@@ -43,7 +43,6 @@
 	  	rs.include(request, response);
 	}
  	%>
-  %>
 	<marquee behavior="scroll" direction="left" style="font-size: 200%">
 	      WELCOME TO LEARNING MANAGEMENT SYSTEM. YOU CAN ACCESS YOUR ACCOUNT
 	      HERE.

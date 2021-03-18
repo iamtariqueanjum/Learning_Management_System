@@ -89,13 +89,9 @@ pageEncoding="ISO-8859-1"%>
         <button type="submit">SIGN UP</button>
       </form>
       <br>
-      <form action="studentLogin.jsp">
-        <button type="submit">LOGIN</button>
+      <form action="adminHome.jsp">
+        <button type="submit">HOME</button>
       </form>
-      <br>
-      <form action="index.jsp">
-		<button type="submit">SELECT PORTAL</button>
-	  </form>
     </div>
     <footer>
       <p>

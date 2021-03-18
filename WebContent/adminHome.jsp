@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+<%@page import="com.jdbc.JdbcConnection"%>
+<%@page import="java.sql.*"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -53,6 +56,16 @@ pageEncoding="ISO-8859-1"%>
         </form>
       </div>
     </nav>
-    <h1>Welcome ADMIN</h1>
+    <%
+	Connection connection = JdbcConnection.getConnection(); 
+	%><%
+	String sessionemail = session.getAttribute("adminusername").toString();
+	PreparedStatement ps = connection.prepareStatement("SELECT * FROM ADMINCRED WHERE ADMINUSERNAME=?");
+    ps.setString(1, sessionemail);
+    ResultSet rs = ps.executeQuery();
+    while(rs.next()){
+	%>	
+    <h1>Welcome <%=rs.getString("ADMINUSERNAME")%></h1>
+    <% } %>
   </body>
 </html>

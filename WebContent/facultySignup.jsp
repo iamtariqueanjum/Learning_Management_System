@@ -89,12 +89,9 @@
 	        <button type="submit">SIGN UP</button>
 	      </form>
 	      <br>
-	      <form action="facultyLogin.jsp">
-	        <button type="submit">LOGIN</button>
-	      </form><br>
-	      <form action="index.jsp">
-			<button type="submit">SELECT PORTAL</button>
-		  </form>	      
+	      <form action="adminHome.jsp">
+	        <button type="submit">HOME</button>
+	      </form>	      
 	    </div>
 		<footer>
 	      <p>

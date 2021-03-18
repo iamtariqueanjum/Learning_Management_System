@@ -7,13 +7,13 @@
 			<meta charset="ISO-8859-1">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<title>Delete a Student</title>
+			<link rel="stylesheet" href="styles.css"/>
 			<link
 		    rel="stylesheet"
 		    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		 />
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-			<link rel="stylesheet" href="login.css"/>
 		</head>
 		<body>
 		<%
@@ -27,24 +27,22 @@
 		    	rs.include(request, response);
 		  	}
   		%>
-		<form class="sign-up-form" action="deleteStudent" method="post">
-		  <div class="form-group">
-		    <label for="email">Email address:</label>
-		    <input type="email" class="input-box" id="email" name="email" placeholder="Enter email">
-		  </div>
-		  <div class="form-group">
-		    <label for="cnfrmemail">Confirm Email address:</label>
-		    <input type="email" class="input-box" id="cnfrmemail" name="cnfrmemail" placeholder="Enter email again">
-		  </div>
-		  <div class="form-group">
-		    <label for="password">Enter Password:</label>
-		    <input type="password" class="input-box" id="password" name="password" placeholder="Enter Password">
-		  </div>
-		  <div class="form-group">
-		    <label for="cnfrmpassword">Confirm Password:</label>
-		    <input type="password" class="input-box" id="cnfrmpassword" name="cnfrmpassword" placeholder="Enter Password again">
-		  </div>
-		  <button type="submit">Submit</button>
-		</form>
-		</body>
+  		<div class="sign-up-form">
+			<form class="signForm" action="deleteStudent" method="post">
+			    <label for="email">Email address:</label>
+			    <input type="email" class="input-box" id="email" name="email" placeholder="Enter email" required>
+			    <label for="cnfrmemail">Confirm Email address:</label>
+			    <input type="email" class="input-box" id="cnfrmemail" name="cnfrmemail" placeholder="Enter email again" required>
+			    <label for="password">Enter Password:</label>
+			    <input type="password" class="input-box" id="password" name="password" placeholder="Enter Password" required>
+			    <label for="cnfrmpassword">Confirm Password:</label>
+			    <input type="password" class="input-box" id="cnfrmpassword" name="cnfrmpassword" placeholder="Enter Password again" required>
+			  <button type="submit">DELETE STUDENT</button>
+			</form>
+			<br>
+			<form action="adminHome.jsp">
+	        	<button type="submit">HOME</button>
+	    	</form>	
+	    </div>
+      </body>
 	</html>

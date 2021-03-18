@@ -1,4 +1,4 @@
-package com.students;
+package com.faculty;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.jdbc.JdbcConnection;
 
 /**
- * Servlet implementation class deleteStudent
+ * Servlet implementation class deleteFaculty
  */
-@WebServlet("/deleteStudent")
-public class deleteStudent extends HttpServlet {
+@WebServlet("/deleteFaculty")
+public class deleteFaculty extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public deleteStudent() {
+    public deleteFaculty() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,32 +40,33 @@ public class deleteStudent extends HttpServlet {
         String cnfpassword = request.getParameter("cnfrmpassword");
         PrintWriter out = response.getWriter();
         if(email.compareTo(cnfemail)==0 && password.compareTo(cnfpassword)==0) {
-        	if(StudentValidate.checkStudent(email, password))
+        	if(FacultyValidate.checkFaculty(email, password))
             {
             	try {
             		Connection con = JdbcConnection.getConnection();
-            		PreparedStatement ps = con.prepareStatement("DELETE FROM STUDENT WHERE EMAIL = ?");
+            		PreparedStatement ps = con.prepareStatement("DELETE FROM FACULTY WHERE EMAIL = ?");
             		ps.setString(1, email);
                     ps.executeQuery();
                     JdbcConnection.closeConnection();
                     response.setContentType("text/html");
                 	out.println("<script type=\"text/javascript\">");
-                	out.println("alert('Student Deleted Successfully');");
-                	out.println("location='studentDelete.jsp';");
+                	out.println("alert('Faculty Deleted Successfully');");
+                	out.println("location='facultyDelete.jsp';");
                 	out.println("</script>");
             	}
             	catch(Exception e) {
             		e.printStackTrace();
             	}
+            	
             }
             else
             {
             	response.setContentType("text/html");
             	out.println("<script type=\"text/javascript\">");
             	out.println("alert('Email or password is incorrect');");
-            	out.println("location='studentDelete.jsp';");
+            	out.println("location='facultyDelete.jsp';");
             	out.println("</script>");
-            	RequestDispatcher rs = request.getRequestDispatcher("studentDelete.jsp");
+            	RequestDispatcher rs = request.getRequestDispatcher("facultyDelete.jsp");
             	rs.include(request, response);
             }
         }
@@ -73,10 +74,11 @@ public class deleteStudent extends HttpServlet {
         	response.setContentType("text/html");
         	out.println("<script type=\"text/javascript\">");
         	out.println("alert('Email or password do not match');");
-        	out.println("location='studentDelete.jsp';");
+        	out.println("location='facultyDelete.jsp';");
         	out.println("</script>");
-        	RequestDispatcher rs = request.getRequestDispatcher("studentDelete.jsp");
+        	RequestDispatcher rs = request.getRequestDispatcher("facultyDelete.jsp");
         	rs.include(request, response);
-        }
+        } 	       
 	}
+
 }
