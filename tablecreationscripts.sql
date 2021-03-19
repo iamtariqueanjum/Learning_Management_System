@@ -79,4 +79,3 @@ ADMINPASSWORD varchar(50)
 );
 
 INSERT INTO ADMINCRED VALUES ('admin','admin@1234');
-

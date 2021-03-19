@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +23,7 @@ import com.jdbc.JdbcConnection;
 @WebServlet("/facultyLogin")
 public class FacultyLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    public static String facultyid;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -46,12 +48,13 @@ public class FacultyLogin extends HttpServlet {
 		String facultyemail = request.getParameter("facultyemail");
         String facultypassword = request.getParameter("facultypassword");
     	PrintWriter out = response.getWriter();
-        if(FacultyValidate.checkFaculty(facultyemail, facultypassword))
+        if(checkFaculty(facultyemail, facultypassword))
         {
-        	HttpSession session=request.getSession();
-        	session.setAttribute("facultyemail", facultyemail);
-        	try {
+        	try {        		
         		Connection con = JdbcConnection.getConnection();
+                HttpSession session=request.getSession();
+            	session.setAttribute("facultyid", facultyid);
+            	session.setAttribute("facultyemail", facultyemail);
         		PreparedStatement ps = con.prepareStatement("INSERT INTO FACLOGINDATA(FACEMAIL,FACLOGINTIME) VALUES(?,CURRENT_TIMESTAMP)");
         		ps.setString(1, facultyemail);
                 ps.executeQuery();
@@ -73,5 +76,22 @@ public class FacultyLogin extends HttpServlet {
         	rs.include(request, response);
         }
 	}
-
+	public static boolean checkFaculty(String facultyemail,String facultypassword) 
+    {
+        boolean st =false;
+        try {
+        	Connection con = JdbcConnection.getConnection();
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM FACULTY WHERE EMAIL=? and PASSWORD=?");
+            ps.setString(1, facultyemail);
+            ps.setString(2, facultypassword);
+            ResultSet rs = ps.executeQuery();
+            st = rs.next();
+            facultyid=rs.getString("FACULTYID");
+            JdbcConnection.closeConnection();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return st;                 
+    }
 }

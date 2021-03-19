@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1" import="java.util.*"%>
+<%@page import="com.jdbc.JdbcConnection"%>
+<%@page import="java.sql.*"%>
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="ISO-8859-1" />
-    <title>Home Page -LMS</title>
+    <title>Home-LMS</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -17,21 +20,8 @@ pageEncoding="ISO-8859-1" import="java.util.*"%>
     response.sendRedirect("facultyLogin.jsp"); } %>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="facultyHome.jsp">LMS</a>
-        </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="facultyHome.jsp">Home</a></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-              >COURSE <span class="caret"></span
-            ></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">ADD A TEST</a></li>
-              <li><a href="#">DELETE A TEST</a></li>
-              <li><a href="#">VIEW STUDENTS</a></li>
-            </ul>
-          </li>
         </ul>
         <form
           class="navbar-form navbar-right"
@@ -42,6 +32,39 @@ pageEncoding="ISO-8859-1" import="java.util.*"%>
         </form>
       </div>
     </nav>
-    <h1>Welcome</h1>
-  </body>
+	<%
+	Connection connection = JdbcConnection.getConnection(); 
+	%>
+	<%
+	String sessionemail = (String)session.getAttribute("facultyemail");
+	String sessionid = (String)session.getAttribute("facultyid");
+	PreparedStatement ps = connection.prepareStatement("SELECT * FROM FACULTY WHERE EMAIL=?");
+    ps.setString(1, sessionemail);
+    ResultSet rs = ps.executeQuery();
+    while(rs.next()){
+	%>	
+    <h1>Welcome <%=rs.getString("FULLNAME")%> <%=rs.getString("FACULTYID")%></h1>
+    <% } %>
+    <h1>Dashboard</h1>
+	<%
+		PreparedStatement ps1 = connection.prepareStatement("SELECT C.* FROM COURSE C INNER JOIN FACULTYCOURSES FC ON C.COURSEID=FC.COURSEID WHERE FC.FACULTYID=?");
+		ps1.setString(1,sessionid);	
+		ResultSet resultSetCourses = ps1.executeQuery();
+		while(resultSetCourses.next()){
+	%>
+	<div class="container">
+	  <div class="row">
+	    <div class="col-sm">
+	      <a href="facultyCourseHome.jsp"><%=resultSetCourses.getString("COURSENAME")%></a>
+	      <p><%=resultSetCourses.getString("COURSEID")%></p>
+	      <p>YEAR:<%=resultSetCourses.getString("YR")%></p>
+	      <p>SEM:<%=resultSetCourses.getString("SEM")%></p>
+	    </div>
+	  </div>
+	</div>
+	<% } %>
+	<%
+		JdbcConnection.closeConnection();
+	%>  
+	</body>
 </html>

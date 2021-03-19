@@ -37,6 +37,7 @@ public class FacultyLogout extends HttpServlet {
     		e.printStackTrace();
     	}
 		session.removeAttribute("facultyemail");
+		session.removeAttribute("facultyid");
 		session.invalidate();
 		response.sendRedirect("facultyLogin.jsp");
 	}

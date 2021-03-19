@@ -44,6 +44,7 @@ public class StudentLogout extends HttpServlet {
     		e.printStackTrace();
     	}
 		session.removeAttribute("email");
+		session.removeAttribute("regid");
 		session.invalidate();
 		response.sendRedirect("studentLogin.jsp");
 	}

@@ -40,7 +40,7 @@ public class deleteFaculty extends HttpServlet {
         String cnfpassword = request.getParameter("cnfrmpassword");
         PrintWriter out = response.getWriter();
         if(email.compareTo(cnfemail)==0 && password.compareTo(cnfpassword)==0) {
-        	if(FacultyValidate.checkFaculty(email, password))
+        	if(FacultyLogin.checkFaculty(email, password))
             {
             	try {
             		Connection con = JdbcConnection.getConnection();
