@@ -6,12 +6,9 @@
 	<meta charset="ISO-8859-1">
 	<title>ADMIN - LOGIN</title>
 	<link rel="stylesheet" href="styles.css">
-	<link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 	<%
@@ -43,8 +40,24 @@
 	  	rs.include(request, response);
 	}
   	%>
+	<header>
+		<ul class="nav nav-tabs nav-fill">
+		  <li class="nav-item">
+		    <a class="nav-link" href="index.jsp">Home</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="facultyLogin.jsp">Faculty</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="studentLogin.jsp">Student</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link active" aria-current="page" href="adminLogin.jsp">Admin</a>
+		  </li>
+		</ul>
+    </header>
 	<div class="sign-up-form">
-      <form name="loginForm" action="adminLogin" method="post">
+      <form action="adminLogin" method="post">
       	<label>ADMIN LOGIN</label><br>
         <label for="adminusername">username: </label>
         <input
@@ -62,12 +75,10 @@
           placeholder="Enter your password"
           required
         />
-        <button type="submit">LOGIN</button>
+        <div class="d-grid gap-2 col-6 mx-auto">	
+	        <input class="btn btn-outline-primary" type="submit" value="LOGIN">
+  		</div>
       </form>
-      <hr/>
-      <form action="index.jsp">
-			<button type="submit">SELECT PORTAL</button>
-	  </form>
       </div>
-</body>
+  </body>
 </html>

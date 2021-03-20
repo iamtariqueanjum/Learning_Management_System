@@ -1,10 +1,6 @@
 @charset "ISO-8859-1";
 body {
   font-family: sans-serif;
-  background-image: url("backgroundimg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: centre;
 }
 .sign-up-form {
   width: 300px;
@@ -23,48 +19,17 @@ body {
   border: 1px solid #999;
   outline: none;
 }
-button {
-  color: black;
-  width: 80%;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 25px;
-  margin: 10px 0;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: white;
-}
-button:hover {
-  background-color: black;
-  color: white;
-}
 a:hover {
   text-decoration: none;
   color: black;
   background-color: white;
   font-size: 15px;
 }
-hr {
-  margin-top: 20px;
-  width: 80%;
-}
-marquee {
-  left: 0;
-  bottom: 0;
+
+.footer{
   width: 100%;
-  font-family: "Poppins", sans-serif;
-  padding: 10px;
-  color: white;
-  text-align: center;
-}
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: black;
   opacity: 0.7;
+  background-color: black;
   color: white;
   text-align: center;
 }

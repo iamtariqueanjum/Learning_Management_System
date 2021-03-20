@@ -30,6 +30,17 @@
         </form>
       </div>
     </nav>
-    <h1>Faculty Course Home</h1>
+    <ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link active" aria-current="page" href="#general">COURSE</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">ASSIGNMENTS</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">MATERIAL</a>
+	  </li>
+	</ul>
+	<h2 id="general">COURSE CONTENT</h2>
 </body>
 </html>

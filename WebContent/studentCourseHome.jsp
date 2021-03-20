@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="com.jdbc.JdbcConnection"%>
+<%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,6 +31,20 @@
         </form>
       </div>
     </nav>
-	<h1>Student Course Home</h1>
+    <%
+	Connection connection = JdbcConnection.getConnection(); 
+	%>
+	<ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link active" aria-current="page" href="#general">COURSE</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">ASSIGNMENTS</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">MATERIAL</a>
+	  </li>
+	</ul>
+	<h2 id="general">COURSE CONTENT</h2>
 </body>
 </html>

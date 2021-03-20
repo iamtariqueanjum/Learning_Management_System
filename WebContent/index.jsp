@@ -4,14 +4,11 @@ pageEncoding="ISO-8859-1"%>
 <html>
   <head>
     <meta charset="ISO-8859-1" />
-    <title>Welcome to LMS PORTAL</title>
+    <title>Welcome to KL LMS</title>
     <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
   </head>
   <body>
   <%
@@ -43,33 +40,51 @@ pageEncoding="ISO-8859-1"%>
 	  	rs.include(request, response);
 	}
   %>
-		
-    <marquee behavior="scroll" direction="left" style="font-size: 200%">
-      WELCOME TO LEARNING MANAGEMENT SYSTEM. YOU CAN ACCESS YOUR ACCOUNT
-      HERE.</marquee
-    >
-
-    <div class="sign-up-form">
-      <form action="facultyLogin.jsp">
-        <label>SELECT IF YOU ARE A FACULTY</label>
-        <button type="submit">FACULTY PORTAL</button>
-      </form>
-      <hr />
-      <form action="studentLogin.jsp">
-        <label>SELECT IF YOU ARE A STUDENT</label>
-        <button type="submit">STUDENT PORTAL</button>
-      </form>
-      <hr />
-      <form action="adminLogin.jsp">
-        <label>SELECT IF YOU ARE A ADMIN</label>
-        <button type="submit">ADMIN PORTAL</button>
-      </form>
-    </div>
-    <footer>
-      <p>
-        For any queries,Contact us<br />
-        <a href="mailto:p6@example.com">p6@example.com</a>
-      </p>
-    </footer>
+  <header>
+	<ul class="nav nav-tabs nav-fill">
+	  <li class="nav-item">
+	    <a class="nav-link active" aria-current="page" href="#">Home</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="facultyLogin.jsp">Faculty</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="studentLogin.jsp">Student</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="adminLogin.jsp">Admin</a>
+	  </li>
+	</ul>
+  </header>	
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+	  <div class="carousel-inner">
+	    <div class="carousel-item active" data-bs-interval="5000">
+	       <img src="backgroundimg1.png" class="d-block w-100" alt="image1">
+	    </div>
+	    <div class="carousel-item" data-bs-interval="5000">
+		  <img src="backgroundimg2.jpg" class="d-block w-100" alt="image2">    
+		</div>
+	    <div class="carousel-item" data-bs-interval="5000">
+	      <img src="backgroundimg3.jpg" class="d-block w-100" alt="image3">
+	    </div>
+	  </div>
+	  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"  data-bs-slide="prev">
+	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	    <span class="visually-hidden">Previous</span>
+	  </button>
+	  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"  data-bs-slide="next">
+	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	    <span class="visually-hidden">Next</span>
+	  </button>
+  </div>
+  <marquee behavior="scroll" direction="left" style="font-size: 200%">
+  	Check out latest updates on your courses here.
+  </marquee>
+  <footer class="footer">
+  	<p>For any queries <a href="mailto:190031065@kluniversity.in">mail us</a></p>	
+	<p>Made with <span style="color: #e25555;">&hearts;</span> 
+	by project6-Enterprise Programming</p>
+	<p>© 2021 Copyright: Project6-Enterprise Programming</p>
+  </footer>
   </body>
 </html>
