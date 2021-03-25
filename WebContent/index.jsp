@@ -55,7 +55,7 @@ pageEncoding="ISO-8859-1"%>
 	    <a class="nav-link" href="adminLogin.jsp">Admin</a>
 	  </li>
 	</ul>
-  </header>	
+  </header>
   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
 	  <div class="carousel-inner">
 	    <div class="carousel-item active" data-bs-interval="5000">

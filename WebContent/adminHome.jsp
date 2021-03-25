@@ -34,6 +34,7 @@ pageEncoding="ISO-8859-1"%>
               <li><a href="facultySignup.jsp">ADD A FACULTY</a></li>
               <li><a href="facultyDelete.jsp">DELETE A FACULTY</a></li>
               <li><a href="viewFaculties.jsp">VIEW FACULTIES</a></li>
+              <li><a href="facultyCourses.jsp">FACULTY COURSE</a></li>
             </ul>
           </li>
         </ul>
