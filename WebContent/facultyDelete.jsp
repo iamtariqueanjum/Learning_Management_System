@@ -8,12 +8,9 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<title>Delete a Faculty</title>
 			<link rel="stylesheet" href="styles.css"/>
-			<link
-		    rel="stylesheet"
-		    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		 />
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<link rel="stylesheet" href="css/bootstrap.min.css">
 		</head>
 		<body>
 		<%
@@ -27,6 +24,18 @@
 		    	rs.include(request, response);
 		  	}
   		%>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+		   	  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        <li class="nav-item">
+		          <a class="nav-link active" aria-current="page" href="adminHome.jsp">Home</a>
+		        </li>
+		      </ul>
+		      <form class="navbar-form navbar-right" action="adminLogout" method="post">
+		          		<button class="btn btn-outline-dark" type="submit">Logout</button>	
+		      </form>
+		    </div>
+		</nav>    			      
   		<div class="sign-up-form">
 			<form class="signForm" action="deleteFaculty" method="post">
 			    <label for="email">Email address:</label>
@@ -37,12 +46,10 @@
 			    <input type="password" class="input-box" id="password" name="password" placeholder="Enter Password" required>
 			    <label for="cnfrmpassword">Confirm Password:</label>
 			    <input type="password" class="input-box" id="cnfrmpassword" name="cnfrmpassword" placeholder="Enter Password again" required>
-			  <button type="submit">DELETE FACULTY</button>
+			    <div class="d-grid gap-2 col-6 mx-auto">	
+			        <input class="btn btn-outline-primary" type="submit" value="DELETE FACULTY">
+		  		</div>
 			</form>
-			<br>
-			<form action="adminHome.jsp">
-	        	<button type="submit">HOME</button>
-	    	</form>	
-	    </div>
+		</div>
       </body>
 	</html>

@@ -8,18 +8,27 @@ pageEncoding="ISO-8859-1"%>
   <head>
     <meta charset="ISO-8859-1" />
     <title>View Faculties</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
   </head>
   <body>
   	<% if(session.getAttribute("adminusername")==null){
     		response.sendRedirect("adminLogin.jsp"); 
     	} 
     %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  		<div class="container-fluid">
+    	  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" href="adminHome.jsp">Home</a>
+	        </li>
+	      </ul>
+	      <form class="navbar-form navbar-right" action="adminLogout" method="post">
+           		<button class="btn btn-outline-dark" type="submit">Logout</button>	
+     	  </form>
+	    </div>
+	</nav>  
   	<%
 	Connection connection = JdbcConnection.getConnection(); 
 	%>
@@ -49,9 +58,5 @@ pageEncoding="ISO-8859-1"%>
 		JdbcConnection.closeConnection();
 		%>
 	</table>
-	<br>
-	<form action="adminHome.jsp">
-		<button type="submit">HOME</button>
-	</form>
   </body>
 </html>
