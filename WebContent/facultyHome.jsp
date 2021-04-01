@@ -52,7 +52,10 @@ pageEncoding="ISO-8859-1" import="java.util.*"%>
 	    <div class="card">
 	      <img src="..." class="card-img-top" alt="...">
 	      <h5 class="card-title"><%=resultSetCourses.getString("COURSENAME")%></h5>
-	      <a class="card-link" href="facultyCourseHome.jsp">Go to Course</a>
+	      <form action="selectFacultyCourse" method="post">
+	      	<input type="hidden" id="courseId" name="courseId" value="<%=resultSetCourses.getString("COURSEID")%>">
+	      	<button type="submit" class="btn btn-link">Go to Course</button>
+	      </form>
 	      <p class="card-text">COURSE ID:<%=resultSetCourses.getString("COURSEID")%></p>
 	      <p class="card-text">YEAR:<%=resultSetCourses.getString("YR")%></p>
 	      <p class="card-text">SEM:<%=resultSetCourses.getString("SEM")%></p>

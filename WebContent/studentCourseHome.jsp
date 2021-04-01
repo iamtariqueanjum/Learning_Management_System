@@ -30,17 +30,75 @@
      	  </form>
 	    </div>
 	</nav>
-	<ul class="nav nav-tabs">
-	  <li class="nav-item">
-	    <a class="nav-link active" aria-current="page" href="#general">COURSE</a>
+	<br>
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="studentHome.jsp">Home</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Course Home</li>
+	  </ol>
+	</nav>
+	<br>
+	<%
+	Connection connection = JdbcConnection.getConnection(); 
+	%>
+	<%
+	String courseId = (String)session.getAttribute("courseId");
+	PreparedStatement s = connection.prepareStatement("SELECT * FROM COURSE WHERE COURSEID=?");
+    s.setString(1, courseId);
+    ResultSet res = s.executeQuery();
+    while(res.next()){
+	%>	
+    <h1><%=res.getString("COURSEID")%>-<%=res.getString("COURSENAME")%>-<%=res.getString("YR")%>YR-<%=res.getString("SEM")%>SEM</h1>
+    <% } %>
+    <br>
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+	  <li class="nav-item" role="presentation">
+	    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Course Content</button>
 	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">ASSIGNMENTS</a>
+	  <li class="nav-item" role="presentation">
+	    <button class="nav-link" id="assignments-tab" data-bs-toggle="tab" data-bs-target="#assignments" type="button" role="tab" aria-controls="assignments" aria-selected="false">Assignments</button>
 	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">MATERIAL</a>
+	  <li class="nav-item" role="presentation">
+	    <button class="nav-link" id="tests-tab" data-bs-toggle="tab" data-bs-target="#tests" type="button" role="tab" aria-controls="tests" aria-selected="false">Tests</button>
 	  </li>
 	</ul>
-	<h2 id="general">COURSE CONTENT</h2>
+	<div class="tab-content" id="myTabContent">
+	  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+	  	<% 
+	  		PreparedStatement ps = connection.prepareStatement("SELECT * FROM COURSEMATERIALS WHERE COURSEID=?");
+			ps.setString(1, courseId);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+		%>
+		<a href=""><%=rs.getString("FILE_TITLE")%></a><br/>
+		<% } %>
+		<br />
+	  </div>
+	  <div class="tab-pane fade" id="assignments" role="tabpanel" aria-labelledby="assignments-tab">
+	  	<% 
+		  	PreparedStatement ps1 = connection.prepareStatement("SELECT * FROM COURSEASSIGNMENTS WHERE COURSEID=?");
+		  	ps1.setString(1, courseId);
+			ResultSet rs1 = ps1.executeQuery();
+			while(rs1.next()){
+		%>
+		<a href=""><%=rs1.getString("ASSIGN_TITLE")%></a><br/>
+		<% } %>
+		<br />
+		<a href="studentUploadCourseAssignment.jsp">Upload assignment</a>
+	  </div>
+	  <div class="tab-pane fade" id="tests" role="tabpanel" aria-labelledby="tests-tab">
+	  	<% 
+		  	PreparedStatement ps2 = connection.prepareStatement("SELECT * FROM COURSETESTS WHERE COURSEID=?");
+		  	ps2.setString(1, courseId);
+			ResultSet rs2 = ps2.executeQuery();
+		    while(rs2.next()){
+		%>
+		<a href=""><%=rs2.getString("TEST_TITLE")%></a><br/>
+		<% } %>
+		<br />
+		<a href="studentUploadCourseTest.jsp">Upload test</a>
+	  </div>
+	</div>
+	<% JdbcConnection.closeConnection(); %> 
 </body>
 </html>
