@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="java.io.*,java.sql.*"%>
 <%@page import="com.jdbc.JdbcConnection"%>
+<%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="ISO-8859-1">
-	<title>Course Home</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-</head>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Course Home</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	    <script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+	</head>
 <body>
 	<% if(session.getAttribute("facultyemail")==null){
     response.sendRedirect("facultyLogin.jsp"); } %>
@@ -27,8 +27,8 @@
      	  </form>
 	    </div>
 	</nav>
-    <br>
-    <nav aria-label="breadcrumb">
+	<br>
+	<nav aria-label="breadcrumb">
 	  <ol class="breadcrumb">
 	    <li class="breadcrumb-item"><a href="facultyHome.jsp">Home</a></li>
 	    <li class="breadcrumb-item active" aria-current="page">Course Home</li>
@@ -62,15 +62,19 @@
 	<div class="tab-content" id="myTabContent">
 	  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 	  	<% 
+			String contentId = (String)session.getAttribute("contentId");
 	  		PreparedStatement ps = connection.prepareStatement("SELECT * FROM COURSEMATERIALS WHERE COURSEID=?");
 			ps.setString(1, courseId);
-			ResultSet rs = ps.executeQuery();
+ 	  		ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 		%>
-		<a href=""><%=rs.getString("FILE_TITLE")%></a><br/>
+		<form action="selectFacultyCourseContent" method="post">
+	      	<input type="hidden" id="contentId" name="contentId" value="<%=rs.getString("FILE_TITLE")%>">
+	      	<button type="submit" class="btn btn-link"><%=rs.getString("FILE_TITLE")%></button>
+	    </form>
 		<% } %>
 		<br />
-		<a href="facultyUploadCourseContent.jsp">Upload course material</a>
+		<a href="facultyUploadCourseContent.jsp">Upload Course Material</a>
 	  </div>
 	  <div class="tab-pane fade" id="assignments" role="tabpanel" aria-labelledby="assignments-tab">
 	  	<% 
@@ -79,7 +83,10 @@
 			ResultSet rs1 = ps1.executeQuery();
 			while(rs1.next()){
 		%>
-		<a href=""><%=rs1.getString("ASSIGN_TITLE")%></a><br/>
+		<form action="selectFacultyAssignment" method="post">
+	      	<input type="hidden" id="assignmentId" name="assignmentId" value="<%=rs1.getString("ASSIGN_TITLE")%>">
+	      	<button type="submit" class="btn btn-link"><%=rs1.getString("ASSIGN_TITLE")%></button>
+	    </form>
 		<% } %>
 		<br />
 		<a href="facultyUploadCourseAssignment.jsp">Upload assignment</a>
@@ -91,7 +98,10 @@
 			ResultSet rs2 = ps2.executeQuery();
 		    while(rs2.next()){
 		%>
-		<a href=""><%=rs2.getString("TEST_TITLE")%></a><br/>
+		<form action="selectFacultyTest" method="post">
+	      	<input type="hidden" id="tetsId" name="testId" value="<%=rs2.getString("TEST_TITLE")%>">
+	      	<button type="submit" class="btn btn-link"><%=rs2.getString("TEST_TITLE")%></button>
+	    </form>
 		<% } %>
 		<br />
 		<a href="facultyUploadCourseTest.jsp">Upload test</a>

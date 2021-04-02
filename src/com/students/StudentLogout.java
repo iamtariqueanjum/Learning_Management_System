@@ -43,8 +43,6 @@ public class StudentLogout extends HttpServlet {
     	catch(Exception e) {
     		e.printStackTrace();
     	}
-		session.removeAttribute("email");
-		session.removeAttribute("regid");
 		session.invalidate();
 		response.sendRedirect("studentLogin.jsp");
 	}

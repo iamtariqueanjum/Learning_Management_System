@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="ISO-8859-1">
-	<title>Course Home</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-</head>
+		<meta charset="ISO-8859-1">
+		<title>Course Home</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	    <script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+	</head>
 <body>
 	<% 
 	if(session.getAttribute("email")==null) {
@@ -65,12 +65,16 @@
 	<div class="tab-content" id="myTabContent">
 	  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 	  	<% 
+			String contentId = (String)session.getAttribute("contentId");
 	  		PreparedStatement ps = connection.prepareStatement("SELECT * FROM COURSEMATERIALS WHERE COURSEID=?");
 			ps.setString(1, courseId);
-			ResultSet rs = ps.executeQuery();
+ 	  		ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 		%>
-		<a href=""><%=rs.getString("FILE_TITLE")%></a><br/>
+		<form action="selectStudentCourseContent" method="post">
+	      	<input type="hidden" id="contentId" name="contentId" value="<%=rs.getString("FILE_TITLE")%>">
+	      	<button type="submit" class="btn btn-link"><%=rs.getString("FILE_TITLE")%></button>
+	    </form>
 		<% } %>
 		<br />
 	  </div>
@@ -81,7 +85,10 @@
 			ResultSet rs1 = ps1.executeQuery();
 			while(rs1.next()){
 		%>
-		<a href=""><%=rs1.getString("ASSIGN_TITLE")%></a><br/>
+		<form action="selectStudentAssignment" method="post">
+	      	<input type="hidden" id="assignmentId" name="assignmentId" value="<%=rs1.getString("ASSIGN_TITLE")%>">
+	      	<button type="submit" class="btn btn-link"><%=rs1.getString("ASSIGN_TITLE")%></button>
+	    </form>
 		<% } %>
 		<br />
 		<a href="studentUploadCourseAssignment.jsp">Upload assignment</a>
@@ -93,7 +100,10 @@
 			ResultSet rs2 = ps2.executeQuery();
 		    while(rs2.next()){
 		%>
-		<a href=""><%=rs2.getString("TEST_TITLE")%></a><br/>
+		<form action="selectStudentTest" method="post">
+	      	<input type="hidden" id="tetsId" name="testId" value="<%=rs2.getString("TEST_TITLE")%>">
+	      	<button type="submit" class="btn btn-link"><%=rs2.getString("TEST_TITLE")%></button>
+	    </form>
 		<% } %>
 		<br />
 		<a href="studentUploadCourseTest.jsp">Upload test</a>

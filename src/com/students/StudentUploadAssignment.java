@@ -44,17 +44,19 @@ public class StudentUploadAssignment extends HttpServlet {
     	try {        		
 
         if(session.getAttribute("email")!=null) {
-        	  String courseId = (String)session.getAttribute("courseId");
+        	  String author = (String)session.getAttribute("email");
+      	      String courseId = (String)session.getAttribute("courseId");
         	  Part filePart = request.getPart("file"); 
         	  String title = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         	  InputStream fileContent = filePart.getInputStream();
 
-        	  PreparedStatement stmt = con.prepareStatement("INSERT INTO COURSEASSIGNMENTS VALUES (?, ?, ?)");
+        	  PreparedStatement stmt = con.prepareStatement("INSERT INTO COURSEASSIGNMENTS VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)");
         	  stmt.setString(1, courseId);
         	  stmt.setString(2, title);
 			  stmt.setBinaryStream(3, fileContent);
-			  stmt.execute();
-			  
+			  stmt.setString(4, author);
+			  stmt.executeQuery();
+			  			  
   			  JdbcConnection.closeConnection();
 	  		  
   			  response.setContentType("text/html");
