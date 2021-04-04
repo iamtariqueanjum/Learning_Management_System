@@ -79,3 +79,8 @@ ADMINPASSWORD varchar(50)
 );
 
 INSERT INTO ADMINCRED VALUES ('admin','admin@1234');
+
+insert into course values('19cs2201','Data Science',2,2);
+insert into course values('20cs3215','C language',1,1);
+insert into course values('17sc1984','ML Using Math',4,2);
+insert into course values('18ME3210','Cyber Security',3,2);

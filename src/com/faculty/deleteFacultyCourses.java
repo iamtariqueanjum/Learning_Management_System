@@ -1,25 +1,30 @@
 package com.faculty;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.*;
 import com.jdbc.JdbcConnection;
-import java.sql.*;
 import java.io.*;
-
 /**
- * Servlet implementation class facultyCourses
+ * Servlet implementation class deleteFacultyCourses
  */
-@WebServlet("/facultyCourses")
-public class facultyCourses extends HttpServlet {
+@WebServlet("/deleteFacultyCourses")
+public class deleteFacultyCourses extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static String courses[];
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public facultyCourses() {
+    public deleteFacultyCourses() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,53 +53,54 @@ public class facultyCourses extends HttpServlet {
 	        	Statement stmt = con.createStatement();
     		    for(int i=0;i<fac.length;i++){
     		    	for(int k=0;k<courses.length;k++) {
-    		    		String sql1="SELECT * FROM FACULTYCOURSES WHERE FACULTYID=? and COURSEID=?";
-        		    	PreparedStatement ps=con.prepareStatement(sql1);
+    		    		String sql1="DELETE FROM FACULTYCOURSES WHERE FACULTYID=? and COURSEID=?";
+        		    	String sql="SELECT * FROM FACULTYCOURSES WHERE FACULTYID=? and COURSEID=?";
+        		    	PreparedStatement ps=con.prepareStatement(sql);
+        		    	PreparedStatement ps1=con.prepareStatement(sql1);
         		    	ps.setString(1, fac[i]);
         		    	ps.setString(2, courses[k]);
-        		    	ResultSet rs = ps.executeQuery();
+        		    	ps1.setString(1, fac[i]);
+        		    	ps1.setString(2, courses[k]);
+        		    	ResultSet rs=ps.executeQuery();
         		    	if(rs.next()) {
-            		    	out.println("<script type=\"text/javascript\">");
-            		        out.println("alert('Some of the courses are already registred');");
-            		        out.println("location='addFacultyCourses.jsp';");
-            		        out.println("</script>");
+            		    	int e = ps1.executeUpdate();
+            		    	if(e>0) {
+                		    	out.println("<script type=\"text/javascript\">");
+                		        out.println("alert('Faculty Courses Deleted Successful');");
+                		        out.println("location='deleteFacultyCourses.jsp';");
+                		        out.println("</script>");
+            		    	}
+            		    	else {
+            		    		out.println("<script type=\"text/javascript\">");
+                		        out.println("alert('Faculty Courses Deleted UnSuccessful');");
+                		        out.println("location='deleteFacultyCourses.jsp';");
+                		        out.println("</script>");
+            		    	}
         		    	}
         		    	else {
-        		    		String sql="INSERT INTO FACULTYCOURSES VALUES ('"+fac[i]+"','"+courses[k]+"')";
-        		    		stmt.addBatch(sql);
-        	        		j=stmt.executeBatch();
+        		    		out.println("<script type=\"text/javascript\">");
+            		        out.println("alert('Faculty Courses Not Found');");
+            		        out.println("location='deleteFacultyCourses.jsp';");
+            		        out.println("</script>");
         		    	}
-    		    	}
-    		    }
-    		    for(int i=0;i<j.length;i++) {
-    		    	if(j[i]>0) {
-    		    		out.println("<script type=\"text/javascript\">");
-    		        	out.println("alert('Faculty Courses Registration Successful');");
-    		        	out.println("location='addFacultyCourses.jsp';");
-    		        	out.println("</script>");
-    		    	}
-    		    	else{
-    		    		out.println("<script type=\"text/javascript\">");
-    		        	out.println("alert('Faculty Courses Registration UnSuccessful');");
-    		        	out.println("location='addFacultyCourses.jsp';");
-    		        	out.println("</script>");
     		    	}
     		    }
     		  }
 		catch(NullPointerException e) {
 			out.println("<script type=\"text/javascript\">");
         	out.println("alert('PLEASE SELECT COURSES!!!');");
-        	out.println("location='addFacultyCourses.jsp';");
+        	out.println("location='deleteFacultyCourses.jsp';");
         	out.println("</script>");
 		}
         catch(NumberFormatException e) {
         	out.println("<script type=\"text/javascript\">");
         	out.println("alert('PLEASE SELECT FACULTY!!!');");
-        	out.println("location='addFacultyCourses.jsp';");
+        	out.println("location='deleteFacultyCourses.jsp';");
         	out.println("</script>");
         }
        catch(Exception e) {
         	System.out.println(e);
         }
 	}
+
 }

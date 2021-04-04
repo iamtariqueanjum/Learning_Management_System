@@ -9,44 +9,25 @@ pageEncoding="ISO-8859-1"%>
     <meta charset="ISO-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ADMIN HOME</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
   </head>
   <body>
     <% if(session.getAttribute("adminusername")==null){
     response.sendRedirect("adminLogin.jsp"); } %>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="adminHome.jsp">Home</a></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">STUDENT <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="studentSignup.jsp">ADD A STUDENT</a></li>
-              <li><a href="studentDelete.jsp">DELETE A STUDENT</a></li>
-              <li><a href="viewStudents.jsp">VIEW STUDENTS</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">FACULTY <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="facultySignup.jsp">ADD A FACULTY</a></li>
-              <li><a href="facultyDelete.jsp">DELETE A FACULTY</a></li>
-              <li><a href="viewFaculties.jsp">VIEW FACULTIES</a></li>
-              <li><a href="facultyCourses.jsp">FACULTY COURSE</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form
-          class="navbar-form navbar-right"
-          action="adminLogout"
-          method="post"
-        >
-          <button type="submit" class="btn btn-default">Logout</button>
-        </form>
-      </div>
-    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  		<div class="container-fluid">
+    	  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" href="adminHome.jsp">Home</a>
+	        </li>
+	      </ul>
+	      <form class="navbar-form navbar-right" action="adminLogout" method="post">
+           		<button class="btn btn-outline-dark" type="submit">Logout</button>	
+     	  </form>
+	    </div>
+	</nav>
     <%
 	Connection connection = JdbcConnection.getConnection(); 
 	%><%
@@ -58,5 +39,31 @@ pageEncoding="ISO-8859-1"%>
 	%>	
     <h1>Welcome <%=rs.getString("ADMINUSERNAME")%></h1>
     <% } %>
+  	<div class="row row-cols-1 row-cols-md-2 g-4">
+	  <div class="col">
+	    <div class="card">
+	      <img src="..." class="card-img-top" alt="...">
+	      <div class="card-body">
+	        <h5 class="card-title">Student</h5>
+	        <p class="card-text">Select your operation</p>
+	      	<a class="card-link" href="studentSignup.jsp">ADD A STUDENT</a>
+		    <a class="card-link" href="studentDelete.jsp">DELETE A STUDENT</a>
+		    <a class="card-link" href="viewStudents.jsp">VIEW STUDENTS</a>
+		    <a class="card-link" href="studentsCourses.jsp">STUDENTS COURSES</a>
+	      </div>
+	    </div>
+	  </div>
+	    <div class="card">
+	      <img src="..." class="card-img-top" alt="...">
+	      <div class="card-body">
+	        <h5 class="card-title">Faculty</h5>
+	        <p class="card-text">Select your operation.</p>
+	      	<a class="card-link" href="facultySignup.jsp">ADD A FACULTY</a>
+		    <a class="card-link" href="facultyDelete.jsp">DELETE A FACULTY</a>
+		    <a class="card-link" href="viewFaculties.jsp">VIEW FACULTIES</a>
+		    <a class="card-link" href="facultyCourses.jsp">FACULTY COURSES</a>
+	      </div>
+	    </div>
+	</div>
   </body>
 </html>

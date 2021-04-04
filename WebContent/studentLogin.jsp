@@ -64,7 +64,7 @@ pageEncoding="ISO-8859-1"%>
           name="email"
           type="email"
           class="input-box"
-          pattern = "[a-z0-9._%+-]+@kluniversity.in"
+          pattern = "[A-Za-z0-9._%+-]+@kluniversity.in"
           title="Enter your kluniversity.in email address"
           placeholder="Enter your email"
           required
