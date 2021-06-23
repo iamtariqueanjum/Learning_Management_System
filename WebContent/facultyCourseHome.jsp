@@ -55,9 +55,6 @@
 	  <li class="nav-item" role="presentation">
 	    <button class="nav-link" id="assignments-tab" data-bs-toggle="tab" data-bs-target="#assignments" type="button" role="tab" aria-controls="assignments" aria-selected="false">Assignments</button>
 	  </li>
-	  <li class="nav-item" role="presentation">
-	    <button class="nav-link" id="tests-tab" data-bs-toggle="tab" data-bs-target="#tests" type="button" role="tab" aria-controls="tests" aria-selected="false">Tests</button>
-	  </li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
 	  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -90,21 +87,6 @@
 		<% } %>
 		<br />
 		<a href="facultyUploadCourseAssignment.jsp">Upload assignment</a>
-	  </div>
-	  <div class="tab-pane fade" id="tests" role="tabpanel" aria-labelledby="tests-tab">
-	  	<% 
-		  	PreparedStatement ps2 = connection.prepareStatement("SELECT * FROM COURSETESTS WHERE COURSEID=?");
-		  	ps2.setString(1, courseId);
-			ResultSet rs2 = ps2.executeQuery();
-		    while(rs2.next()){
-		%>
-		<form action="selectFacultyTest" method="post">
-	      	<input type="hidden" id="tetsId" name="testId" value="<%=rs2.getString("TEST_TITLE")%>">
-	      	<button type="submit" class="btn btn-link"><%=rs2.getString("TEST_TITLE")%></button>
-	    </form>
-		<% } %>
-		<br />
-		<a href="facultyUploadCourseTest.jsp">Upload test</a>
 	  </div>
 	</div>
 	<% JdbcConnection.closeConnection(); %> 

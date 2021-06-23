@@ -51,7 +51,6 @@ pageEncoding="ISO-8859-1"%>
 	<div class="row row-cols-1 row-cols-md-2 g-4">
 	  <div class="col">
 	    <div class="card">
-	      <img src="..." class="card-img-top" alt="...">
 	      <h5 class="card-title"><%=resultSetCourses.getString("COURSENAME")%></h5>
 	      <form action="selectStudentCourse" method="post">
 	      	<input type="hidden" id="courseId" name="courseId" value="<%=resultSetCourses.getString("COURSEID")%>">

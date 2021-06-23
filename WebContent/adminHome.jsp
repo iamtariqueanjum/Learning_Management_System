@@ -42,7 +42,7 @@ pageEncoding="ISO-8859-1"%>
   	<div class="row row-cols-1 row-cols-md-2 g-4">
 	  <div class="col">
 	    <div class="card">
-	      <img src="..." class="card-img-top" alt="...">
+	      <img src="images/student.png" class="card-img-top" alt="..." height="500px">
 	      <div class="card-body">
 	        <h5 class="card-title">Student</h5>
 	        <p class="card-text">Select your operation</p>
@@ -54,7 +54,7 @@ pageEncoding="ISO-8859-1"%>
 	    </div>
 	  </div>
 	    <div class="card">
-	      <img src="..." class="card-img-top" alt="...">
+	      <img src="images/teacher.png" class="card-img-top" alt="..." height="500px">
 	      <div class="card-body">
 	        <h5 class="card-title">Faculty</h5>
 	        <p class="card-text">Select your operation.</p>
