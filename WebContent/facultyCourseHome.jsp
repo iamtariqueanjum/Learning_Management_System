@@ -65,10 +65,14 @@
  	  		ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 		%>
-		<form action="selectFacultyCourseContent" method="post">
-	      	<input type="hidden" id="contentId" name="contentId" value="<%=rs.getString("FILE_TITLE")%>">
-	      	<button type="submit" class="btn btn-link"><%=rs.getString("FILE_TITLE")%></button>
-	    </form>
+		<div class="card">
+		    <div class="card-header">
+		        <form action="selectFacultyCourseContent" method="post">
+			      	<input type="hidden" id="contentId" name="contentId" value="<%=rs.getString("FILE_TITLE")%>">
+			      	<button type="submit" class="btn btn-link"><%=rs.getString("FILE_TITLE")%></button>
+			  	</form>
+		    </div>
+		  </div>
 		<% } %>
 		<br />
 		<a href="facultyUploadCourseContent.jsp">Upload Course Material</a>
@@ -80,10 +84,14 @@
 			ResultSet rs1 = ps1.executeQuery();
 			while(rs1.next()){
 		%>
-		<form action="selectFacultyAssignment" method="post">
-	      	<input type="hidden" id="assignmentId" name="assignmentId" value="<%=rs1.getString("ASSIGN_TITLE")%>">
-	      	<button type="submit" class="btn btn-link"><%=rs1.getString("ASSIGN_TITLE")%></button>
-	    </form>
+		<div class="card">
+		    <div class="card-header">
+		        <form action="selectFacultyAssignment" method="post">
+			      	<input type="hidden" id="assignmentId" name="assignmentId" value="<%=rs1.getString("ASSIGN_TITLE")%>">
+			      	<button type="submit" class="btn btn-link"><%=rs1.getString("ASSIGN_TITLE")%></button>
+			    </form>
+		    </div>
+		</div>
 		<% } %>
 		<br />
 		<a href="facultyUploadCourseAssignment.jsp">Upload assignment</a>

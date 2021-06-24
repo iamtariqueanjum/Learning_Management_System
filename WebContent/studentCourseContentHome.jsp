@@ -60,8 +60,8 @@
 	ResultSet rs = ps.executeQuery();
 	while(rs.next()){
 	%>
-	<a href="studentCourseContentHome.jsp"><%=rs.getString("FILE_TITLE")%></a><br/>
-	<br />
+	<a href="downloadCourseContent?filename=<%=rs.getString("FILE_TITLE")%>"><%=rs.getString("FILE_TITLE")%></a>  
+	<br /><br />
 	<p>AUTHOR: <%=rs.getString("AUTHOR")%></p>
 	<p>UPLOAD TIME: <%=rs.getTimestamp("PUBLISHED_TIME")%></p>
 	<% } %>
